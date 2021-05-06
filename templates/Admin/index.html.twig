@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+<header class="nav">
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light">
+        <div>
+            <a class="nav-link navbar-brand" href="#home"> <img src="{{asset('images/justice.png')}}" alt=""> </a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link nav-home scroll-link" href="#home">Accueil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link  scroll-link" href="#presentation">Présentation</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link  scroll-link" href="#competences">Compétences</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link  scroll-link" href="#honoraire">Honoraires</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link  scroll-link" href="#actu">Actualité</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link  scroll-link" href="#contact">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"href="{{path('app_register')}}">Register</a>
+            </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link"href="{{path('app_login')}}">Login</a>
+            </li> -->
+          </ul>
+        </div>
+      </nav>
+</header>
+<section id="home" class="home-container">
+    <div class="card card-home">
+        
+        {{ form_start(acceuilForm) }}
+                {{ form_row(acceuilForm.titre) }}
+                {{ form_row(acceuilForm.text) }}
+        
+                <button type="submit" class="btn btn-warning">Modifier</button>
+            {{ form_end(acceuilForm) }}      
+    </div>
+</section>
+{% include '/Admin/presentation.html.twig' %}
+{% include '/Admin/competences.html.twig' %}
+{% include '/home/honoraire.html.twig' %}
+{% include '/home/actu.html.twig' %}
+{% include '/Admin/contact.html.twig' %}
+{% endblock %}

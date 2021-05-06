@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+<header class="nav">
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light">
+        <div>
+            <a class="nav-link navbar-brand" href="#home"> <img src="{{asset('images/justice.png')}}" alt=""> </a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link nav-home scroll-link" href="#home">Accueil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link  scroll-link" href="#presentation">Présentation</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link  scroll-link" href="#competences">Compétences</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link  scroll-link" href="#honoraire">Honoraires</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link  scroll-link" href="#actu">Actualité</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link  scroll-link" href="#contact">Contact</a>
+            </li>
+            {% if is_granted('ROLE_MANAGER') == true %}
+            <li class="nav-item">
+                <a class="nav-link"href="{{path('app_register')}}">Register</a>
+            </li>
+            <li class="nav-item">
+                <!-- <a class="nav-link"href="{{path('app_login')}}">Login</a> -->
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"href="{{path('app_logout')}}">Déconnexion</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{path('home')}}">retour au modifications</a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+</header>
+<section id="home" class="home-container">
+    <div class="card card-home">
+        <h1>{{accueil.titre}}</h1>
+        <p>{{accueil.text}}</p>       
+    </div>
+</section>
+{% include '/home/presentation.html.twig' %}
+{% include '/home/competences.html.twig' %}
+{% include '/home/honoraire.html.twig' %}
+{% include '/home/actu.html.twig' %}
+{% include '/home/contact.html.twig' %}
+{% endblock %}

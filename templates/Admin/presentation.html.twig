@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Présentation{% endblock %}
+
+{% block body %}
+<section id="presentation" class="home-container">
+    <div class="card card-presentation">
+        <h1>Présentation</h1>  
+        <!-- <div class="flexPres">
+            <div class="card "> -->
+        
+                {{ form_start(presForm) }}
+                        {{ form_row(presForm.photo) }}
+                        
+                        {{ form_row(presForm.text) }}
+                
+                        <button type="submit" class="btn btn-warning">Modifier</button>
+                    {{ form_end(presForm) }}      
+            <!-- </div>
+            </div> -->
+        </div>
+    </div>
+</section>
+{% endblock %}

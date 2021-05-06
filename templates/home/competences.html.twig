@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Compétences{% endblock %}
+
+{% block body %}
+<section id="competences" class="home-container">
+    <div class="card card-presentation">
+        <h1>Compétences</h1> 
+        {{competences.textComp | raw }}       
+    </div>
+</section>
+{% endblock %}
