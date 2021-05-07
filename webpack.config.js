@@ -7,6 +7,15 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 }
 
 Encore
+
+    .copyFiles({
+        from: 'node_modules/tinymce/skins',
+        to: 'skins/[path]/[name].[ext]'
+    })
+    .copyFiles({
+        from: 'node_modules/tinymce/plugins',
+        to: 'plugins/[path]/[name].[ext]'
+    })
     // directory where compiled assets will be stored
     .setOutputPath('public/build/')
     // public path used by the web server to access the output path

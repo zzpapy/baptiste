@@ -24,36 +24,37 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(Request $request, FileUploader $fileUploader,MailerInterface $mailer): Response
     {
-        $post = $request->request;
-        // dd($post);
-        $nom = $post->get('nom');
-        $from = $post->get('mail');
-        // $email = (new \Swift_Message('Nouveau contact'))
-        //         // On attribue l'expéditeur
-        //         ->setFrom($from)
-        //         // On attribue le destinataire
-        //         ->setTo('gregory.pace@hotmail.fr')
-        //         // On crée le texte avec la vue
-        //         ->setBody(
-        //             "totototototototot"
-        //         );
-        $email = (new Email())
-        ->from($from)
-        ->to('contact@dev-greg-pace.fr')
-        //->cc('cc@example.com')
-        //->bcc('bcc@example.com')
-        //->replyTo('fabien@example.com')
-        //->priority(Email::PRIORITY_HIGH)
-        ->subject('Time for Symfony Mailer!')
-        ->text('Sending emails is fun again!')
-        ->html('<p>See Twig integration for better HTML integration!</p>');
-        try{
-            $test = $mailer->send($email);
+        // dd($request);
+        // $post = $request->request;
+        // // dd($post);
+        // $nom = $post->get('nom');
+        // $from = $post->get('mail');
+        // // $email = (new \Swift_Message('Nouveau contact'))
+        // //         // On attribue l'expéditeur
+        // //         ->setFrom($from)
+        // //         // On attribue le destinataire
+        // //         ->setTo('gregory.pace@hotmail.fr')
+        // //         // On crée le texte avec la vue
+        // //         ->setBody(
+        // //             "totototototototot"
+        // //         );
+        // $email = (new Email())
+        // ->from($from)
+        // ->to('contact@dev-greg-pace.fr')
+        // //->cc('cc@example.com')
+        // //->bcc('bcc@example.com')
+        // //->replyTo('fabien@example.com')
+        // //->priority(Email::PRIORITY_HIGH)
+        // ->subject('Time for Symfony Mailer!')
+        // ->text('Sending emails is fun again!')
+        // ->html('<p>See Twig integration for better HTML integration!</p>');
+        // try{
+        //     $test = $mailer->send($email);
 
-        }
-        catch(Exception $e){
-            dd($e);
-        }
+        // }
+        // catch(Exception $e){
+        //     dd($e);
+        // }
         // dd($post);
         $accueil = $this->getDoctrine()
         ->getRepository(Accueil::class)
@@ -136,9 +137,10 @@ class HomeController extends AbstractController
         }
         else{
             return $this->render('home/index.html.twig', [
-                "accueil" => $accueil, "presentation" => $presentation,
-                "competences" => $competences,
-                "presentation" => $presentation
+                "accueil" => $accueil, 
+                "presentation" => $presentation,
+                // "competences" => $competences,
+                // "presentation" => $presentation
             ]);
             
         }
