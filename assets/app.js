@@ -8,6 +8,7 @@ import bsCustomFileInput from 'bs-custom-file-input';
 
  import './controllers/scroll.js';
  import './controllers/tinymce.js';
+ import './controllers/collection.js';
 
  
  global.$ = global.jQuery = $;

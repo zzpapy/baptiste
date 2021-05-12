@@ -8,7 +8,6 @@ import 'tinymce/icons/default'
 // import 'tinymce/skins/content/default'
 
 // import 'tinymce/skins/content/default'
- console.log(tinymce)
 
  tinymce.init({
     // skin: false,

@@ -2,12 +2,17 @@
 
 namespace App\Controller;
 
+use App\Entity\Topic;
 use App\Entity\Accueil;
+use App\Entity\Actualites;
 use App\Entity\Competences;
+use App\Entity\Honnoraires;
 use App\Entity\Presentation;
 use App\Form\AccueilFormType;
 use App\Service\FileUploader;
+use App\Form\ActualitesFormType;
 use App\Form\CompetenceFormType;
+use App\Form\HonnorairesFormType;
 use Symfony\Component\Mime\Email;
 use App\Form\PresentationFormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,7 +29,7 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(Request $request, FileUploader $fileUploader,MailerInterface $mailer): Response
     {
-        // dd($request);
+        // dd($request->query);
         // $post = $request->request;
         // // dd($post);
         // $nom = $post->get('nom');
@@ -55,7 +60,6 @@ class HomeController extends AbstractController
         // catch(Exception $e){
         //     dd($e);
         // }
-        // dd($post);
         $accueil = $this->getDoctrine()
         ->getRepository(Accueil::class)
         ->findAll();
@@ -97,14 +101,43 @@ class HomeController extends AbstractController
         
         $formComp = $this->createForm(CompetenceFormType::class, $competences);
         $formComp->handleRequest($request);
+
+        $honnoraires = $this->getDoctrine()
+        ->getRepository(Honnoraires::class)
+        ->findAll();
+        
+        // dd($honnoraires);
+        if(empty($honnoraires)){
+            $honnoraires = new Honnoraires();
+        }
+        else{
+            $honnoraires = $honnoraires[0];
+        }
+        
+        $formHon = $this->createForm(HonnorairesFormType::class, $honnoraires);
+        $formHon->handleRequest($request);
+        $actualites = $this->getDoctrine()
+        ->getRepository(Actualites::class)
+        ->findAll();
+        // dd(count($actualites[0]->getTopic()));
+        if(empty($actualites)){
+            $actualites = new Actualites();
+        }
+        else{
+            $actualites = $actualites[0];
+        }
+
+        $formActu = $this->createForm(ActualitesFormType::class, $actualites);
+        $formActu->handleRequest($request);
         
         // dd($form->isSubmitted() && $form->isValid() || $formPres->isSubmitted() && $formPres->isValid() || $formComp->isSubmitted() && $formComp->isValid());
-        if ($form->isSubmitted() && $form->isValid() || $formPres->isSubmitted() && $formPres->isValid() || $formComp->isSubmitted() && $formComp->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
+        $entityManager = $this->getDoctrine()->getManager();
+        if ($form->isSubmitted() && $form->isValid() || $formPres->isSubmitted() && $formPres->isValid() || $formComp->isSubmitted() && $formComp->isValid() || $formHon->isSubmitted() && $formHon->isValid() || $formActu->isSubmitted() && $formActu->isValid()) {
+            
+        // dd($formPres->get('photo'));
             $entityManager->persist($accueil);
-            $entityManager->flush();
+            
             if ($formPres->isSubmitted() && $formPres->isValid()) {
-                $photo = $formPres->get('photo')->getData();
                 $photo = $formPres->get('photo')->getData();
                 if ($photo) {
                     $photoName = $fileUploader->upload($photo);
@@ -112,18 +145,40 @@ class HomeController extends AbstractController
                 }    
                 
                 $entityManager->persist($presentation);
+                
+            }
+            if ($formActu->isSubmitted() && $formActu->isValid()) {
+                
+                foreach ($formActu->get('topic') as $key => $value) {
+                    $photo = $value->get('illustration')->getData();
+                    
+                    if ($photo) {
+                        $photoName = $fileUploader->upload($photo);
+                    } 
+                }
+                $entityManager->persist($actualites);
                 $entityManager->flush();
+                // dd($formActu->get('topic'));
+                 
+                
+                // $entityManager->persist($actualite);
+                // 
             }
             if ($formComp->isSubmitted() && $formComp->isValid()) {
                 $entityManager->persist($competences);
-                $entityManager->flush();
+                
             }
-
-            // dd($presentation);
+            if ($formHon->isSubmitted() && $formHon->isValid()) {                
+                $entityManager->persist($honnoraires);
+                
+            }
+            $entityManager->flush();
             return $this->render('home/index.html.twig', [
                 "accueil" => $accueil,
                 "presentation" => $presentation,
-                "competences" => $competences
+                "competences" => $competences,
+                "honnoraires" => $honnoraires,
+                "actualites" => $actualites
             ]);
         }
             
@@ -132,15 +187,20 @@ class HomeController extends AbstractController
             return $this->render('admin/index.html.twig', [
                 "acceuilForm" => $form->createView(),
                 "presForm" => $formPres->createView(),
-                "compForm" => $formComp->createView()
+                "compForm" => $formComp->createView(),
+                "formHon" => $formHon->createView(),
+                "presentation" => $presentation,
+                "formActu" => $formActu->createView(),
+                "actualites" => $actualites
                 ]);
         }
         else{
             return $this->render('home/index.html.twig', [
                 "accueil" => $accueil, 
                 "presentation" => $presentation,
-                // "competences" => $competences,
-                // "presentation" => $presentation
+                "competences" => $competences,
+                "actualites" => $actualites,
+                "honnoraires" => $honnoraires,
             ]);
             
         }

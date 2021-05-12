@@ -5,7 +5,10 @@
 {% block body %}
 <section id="honoraire" class="home-container">
     <div class="card card-home">
-        <h1>Honoraires</h1>        
+        <h1>Honoraires</h1>
+        <div>               
+            {{honnoraires.text | raw }}
+        </div>       
     </div>
 </section>
 {% endblock %}

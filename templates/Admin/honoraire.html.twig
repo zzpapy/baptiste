@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Honoraires{% endblock %}
+
+{% block body %}
+<section id="honoraire" class="home-container">
+    <div class="card card-home">
+        <h1>Honoraires</h1> 
+        {{form_start(formHon)}}
+        {{ form_start(formHon) }}
+        {{ form_row(formHon.text) }}
+        <button type="submit" class="btn btn-warning">Modifier</button>
+    {{ form_end(formHon) }}        
+    </div>
+</section>
+{% endblock %}

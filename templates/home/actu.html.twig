@@ -4,8 +4,18 @@
 
 {% block body %}
 <section id="actu" class="home-container">
-    <div class="card card-home">
-        <h1>Actualité</h1>        
+    <div class="card card-presentation">
+        <h1>Actualité</h1> 
+        {% for actu in actualites.topic %}
+        <article class="car card-actu mt-2">
+        <h2>{{actu.title | raw}}</h2>
+        <div>
+            <img src="{{actu.illustration}}" alt="">     
+        </div>
+        {{actu.content | raw}}
+        </article>
+
+        {% endfor %}      
     </div>
 </section>
 {% endblock %}

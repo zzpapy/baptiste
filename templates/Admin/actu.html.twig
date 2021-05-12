@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Actualité{% endblock %}
+
+{% block body %}
+<section id="actu" class="home-container">
+    <div class="card card-presentation">
+        <h1>Actualité</h1>
+        <button type="button"
+            class="add-another-collection-widget btn btn-primary"
+            data-list-selector="#topic-list">Nouvelle Actu</button>
+    {{form_start(formActu)}}
+        <ul id="topic-list"
+        data-prototype="{{ form_widget(formActu.topic.vars.prototype)|e }}"
+        data-widget-tags="{{ '<li></li>'|e }}"
+        data-widget-counter="{{ formActu.topic|length }}">
+            <pre>
+                {{ dump(formActu.topic) }}
+            </pre>
+        {% for top in formActu.topic %}
+            <li>
+                {{ form_errors(top) }}
+                {{ form_widget(top) }}
+            </li>
+        {% endfor %}
+        </ul>
+        <button type="submit" class="btn btn-warning">Modifier</button>
+        {{form_end(formActu)}}
+       
+                
+    </div>
+</section>
+{% endblock %}

@@ -20,3 +20,24 @@ $(function() {
     });
  
 });
+
+$('#presentation_form_photo').on('change',(event) => {
+   src = URL.createObjectURL(event.target.files[0]);
+    console.log(src)
+    $('#img-pres').attr('src',src)
+    src.onload = function() {
+      URL.revokeObjectURL(src) // free memory
+    }
+})
+$(document).on('change', '.custom-file-input', function () {
+    let fileName = $(this).val().replace(/\\/g, '/').replace(/.*\//, '');
+    $(this).parent('.custom-file').find('.custom-file-label').text(fileName);
+});
+var loadFile = function(event) {
+    var output = document.getElementById('presentation_form_photo');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    console.log(output)
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) // free memory
+    }
+  };
