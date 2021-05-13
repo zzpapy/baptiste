@@ -22,8 +22,7 @@ class FileUploader
         $imagePath = "/public/photos";
         $safeFilename = $this->slugger->slug($originalFilename);
         $fileName = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
-        
-        // dd($file);
+       
         try {
             $file->move($this->getTargetDirectory(), $fileName);
             
