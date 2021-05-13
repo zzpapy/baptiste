@@ -27,7 +27,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 class HomeController extends AbstractController
 {
      /**
-     * @Route("/home", name="home")
+     * @Route("/", name="home")
      */
     public function index(Request $request, FileUploader $fileUploader,MailerInterface $mailer): Response
     {
