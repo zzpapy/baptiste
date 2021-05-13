@@ -14,9 +14,6 @@
         data-prototype="{{ form_widget(formActu.topic.vars.prototype)|e }}"
         data-widget-tags="{{ '<li></li>'|e }}"
         data-widget-counter="{{ formActu.topic|length }}">
-            <pre>
-                {{ dump(formActu.topic) }}
-            </pre>
         {% for top in formActu.topic %}
             <li>
                 {{ form_errors(top) }}

@@ -29,37 +29,6 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(Request $request, FileUploader $fileUploader,MailerInterface $mailer): Response
     {
-        // dd($request->query);
-        // $post = $request->request;
-        // // dd($post);
-        // $nom = $post->get('nom');
-        // $from = $post->get('mail');
-        // // $email = (new \Swift_Message('Nouveau contact'))
-        // //         // On attribue l'expéditeur
-        // //         ->setFrom($from)
-        // //         // On attribue le destinataire
-        // //         ->setTo('gregory.pace@hotmail.fr')
-        // //         // On crée le texte avec la vue
-        // //         ->setBody(
-        // //             "totototototototot"
-        // //         );
-        // $email = (new Email())
-        // ->from($from)
-        // ->to('contact@dev-greg-pace.fr')
-        // //->cc('cc@example.com')
-        // //->bcc('bcc@example.com')
-        // //->replyTo('fabien@example.com')
-        // //->priority(Email::PRIORITY_HIGH)
-        // ->subject('Time for Symfony Mailer!')
-        // ->text('Sending emails is fun again!')
-        // ->html('<p>See Twig integration for better HTML integration!</p>');
-        // try{
-        //     $test = $mailer->send($email);
-
-        // }
-        // catch(Exception $e){
-        //     dd($e);
-        // }
         $accueil = $this->getDoctrine()
         ->getRepository(Accueil::class)
         ->findAll();
@@ -105,8 +74,7 @@ class HomeController extends AbstractController
         $honnoraires = $this->getDoctrine()
         ->getRepository(Honnoraires::class)
         ->findAll();
-        
-        // dd($honnoraires);
+       
         if(empty($honnoraires)){
             $honnoraires = new Honnoraires();
         }
@@ -119,7 +87,7 @@ class HomeController extends AbstractController
         $actualites = $this->getDoctrine()
         ->getRepository(Actualites::class)
         ->findAll();
-        // dd(count($actualites[0]->getTopic()));
+
         if(empty($actualites)){
             $actualites = new Actualites();
         }
@@ -130,11 +98,9 @@ class HomeController extends AbstractController
         $formActu = $this->createForm(ActualitesFormType::class, $actualites);
         $formActu->handleRequest($request);
         
-        // dd($form->isSubmitted() && $form->isValid() || $formPres->isSubmitted() && $formPres->isValid() || $formComp->isSubmitted() && $formComp->isValid());
         $entityManager = $this->getDoctrine()->getManager();
         if ($form->isSubmitted() && $form->isValid() || $formPres->isSubmitted() && $formPres->isValid() || $formComp->isSubmitted() && $formComp->isValid() || $formHon->isSubmitted() && $formHon->isValid() || $formActu->isSubmitted() && $formActu->isValid()) {
             
-        // dd($formPres->get('photo'));
             $entityManager->persist($accueil);
             
             if ($formPres->isSubmitted() && $formPres->isValid()) {
@@ -158,11 +124,6 @@ class HomeController extends AbstractController
                 }
                 $entityManager->persist($actualites);
                 $entityManager->flush();
-                // dd($formActu->get('topic'));
-                 
-                
-                // $entityManager->persist($actualite);
-                // 
             }
             if ($formComp->isSubmitted() && $formComp->isValid()) {
                 $entityManager->persist($competences);
