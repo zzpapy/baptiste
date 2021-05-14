@@ -17,13 +17,8 @@
         {% for top in formActu.topic %}
             <li>
                 {{ form_errors(top) }}
-                {{ form_widget(top.title) }}
-                <div class="home-container ">
-                <img id="img-pres" src="{{top.vars["value"].illustration}}" alt="">
-                {{ form_widget(top.illustration) }}
-                </div>
-                {{ form_widget(top.content) }}
-
+                {{ form_widget(top) }}
+                <img src="{{top.illustration}}" alt="">
             </li>
         {% endfor %}
         </ul>

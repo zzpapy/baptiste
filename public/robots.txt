@@ -1,0 +1,6 @@
+# Group 2
+User-agent: *
+Allow: /
+
+Sitemap: http://papy-dev/sitemap.xml
+Sitemap: http://avocat-lebrou.papy-dev/sitemap.xml
