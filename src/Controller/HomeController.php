@@ -119,9 +119,9 @@ class HomeController extends AbstractController
                 
                 foreach ($formActu->get('topic') as $key => $value) {
                     $photo = $value->get('illustration')->getData();
-                    
                     if ($photo) {
                         $photoName = $fileUploader->upload($photo);
+                        $value->getData()->setIllustration('/photos/'.$photoName);
                     } 
                 }
                 $entityManager->persist($actualites);
@@ -145,9 +145,9 @@ class HomeController extends AbstractController
             ]);
         }
             
-
+        // dd($this->isGranted('ROLE_ADMIN'));
         if($this->isGranted('ROLE_ADMIN')){
-            return $this->render('admin/index.html.twig', [
+            return $this->render('Admin/index.html.twig', [
                 "acceuilForm" => $form->createView(),
                 "presForm" => $formPres->createView(),
                 "compForm" => $formComp->createView(),

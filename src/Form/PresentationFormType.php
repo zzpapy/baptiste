@@ -40,6 +40,7 @@ class PresentationFormType extends AbstractType
                 ],
             ])
             ->add('text', TextAreaType::class, [
+                'required' => false,
                 'label' => false,
                 'attr' => ['class' => 'tinymce'],
             ])
