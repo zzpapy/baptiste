@@ -32,6 +32,9 @@
             <li class="nav-item">
                 <a class="nav-link"href="{{path('app_register')}}">Register</a>
             </li>
+             <li class="nav-item">
+              <a class="nav-link"href="{{path('app_logout')}}">Déconnexion</a>
+            </li>
             <!-- <li class="nav-item">
                 <a class="nav-link"href="{{path('app_login')}}">Login</a>
             </li> -->
@@ -55,7 +58,36 @@
 {% include('./Admin/honoraire.html.twig') %}
 {% include('./Admin/actu.html.twig') %}
 {% include('./Admin/contact.html.twig') %}
+<footer class="footer">
 <nav class="navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light">
-toto
+  <div>
+    <p>Baptiste Lebrou avocat au barreau de Strasbourg</p>
+    <p>39 Avenue des Vosges 67000 STRASBOURG</p>
+    <p>Siret 54006494600036</p>
+    <p>Siren 540064946</p>
+    <p>TVA Intracommunautaire FR67540064946</p>
+  </div>
+  <div>
+    <p></p>
+    <p>
+      <a class="nav-link scroll-link" href="#home">Accueil</a>
+    </p>
+    <p>
+      <a class="nav-link  scroll-link" href="#presentation">Présentation</a>
+    </p>
+    <p>
+      <a class="nav-link  scroll-link" href="#competences">Compétences</a>
+    </p>
+    <p>
+      <a class="nav-link  scroll-link" href="#honoraire">Honoraires</a>
+    </p>
+    <p>
+        <a class="nav-link  scroll-link" href="#actu">Actualité</a>
+    </p>
+    <p>
+        <a class="nav-link  scroll-link" href="#contact">Contact</a>
+    </p>
+  </div>
 </nav>
+</footer>
 {% endblock %}
