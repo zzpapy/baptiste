@@ -20,6 +20,10 @@ img{
   width: 33% !important;
   color: white;
 }
+.footer div:first-child{
+  flex:1;
+  color: white;
+}
 .footer div p:first-child{
   font-size: 0.75em;
   margin-bottom: 0.5em;
