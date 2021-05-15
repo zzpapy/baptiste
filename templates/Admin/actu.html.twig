@@ -5,7 +5,7 @@
     <div class="card card-presentation">
         <h2>Actualité</h2>
         <button type="button"
-            class="add-another-collection-widget btn btn-primary"
+            class="add-another-collection-widget actu btn btn-primary"
             data-list-selector="#topic-list">Nouvelle Actu</button>
     {{form_start(formActu)}}
         <ul id="topic-list"
@@ -13,12 +13,16 @@
         data-widget-tags="{{ '<li></li>'|e }}"
         data-widget-counter="{{ formActu.topic|length }}">
         {% for top in formActu.topic %}
-            <li>
+            <li class="mb-1 topic">
                 {{ form_errors(top) }}
                 {{ form_widget(top.title) }}
                 <div class="home-container ">
                 <img id="img-pres" src="{{top.vars["value"].illustration}}" alt="">
-                {{ form_widget(top.illustration) }}
+                {{ form_widget(top.illustration,{
+                    attr: {
+                        'placeholder': 'choisir une image'
+                    }
+                }) }}
                 </div>
                 {{ form_widget(top.content) }}
 

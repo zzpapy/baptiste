@@ -21,7 +21,7 @@ class TopicFormType extends AbstractType
                 'attr' => ['class' => 'tinymce'],
             ])
             ->add('illustration', FileType::class, [
-                'label' => 'Illustration ',
+                'label' => false,
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
