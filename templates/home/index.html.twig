@@ -1,6 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
 
 {% block body %}
 <header class="nav">
@@ -55,9 +54,41 @@
         <p>{{accueil.text}}</p>       
     </div>
 </section>
-{% include '/home/presentation.html.twig' %}
-{% include '/home/competences.html.twig' %}
-{% include '/home/honoraire.html.twig' %}
-{% include '/home/actu.html.twig' %}
-{% include '/home/contact.html.twig' %}
+{% include('./home/presentation.html.twig') %}
+{% include('./home/competences.html.twig') %}
+{% include('./home/honoraire.html.twig') %}
+{% include('./home/actu.html.twig') %}
+{% include('./home/contact.html.twig') %}
+<footer class="footer">
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light">
+  <div>
+    <p>Baptiste Lebrou avocat au barreau de Strasbourg</p>
+    <p>39 Avenue des Vosges 67000 STRASBOURG</p>
+    <p>Siret 54006494600036</p>
+    <p>Siren 540064946</p>
+    <p>TVA Intracommunautaire FR67540064946</p>
+  </div>
+  <div>
+    <p></p>
+    <p>
+      <a class="nav-link scroll-link" href="#home">Accueil</a>
+    </p>
+    <p>
+      <a class="nav-link  scroll-link" href="#presentation">Présentation</a>
+    </p>
+    <p>
+      <a class="nav-link  scroll-link" href="#competences">Compétences</a>
+    </p>
+    <p>
+      <a class="nav-link  scroll-link" href="#honoraire">Honoraires</a>
+    </p>
+    <p>
+        <a class="nav-link  scroll-link" href="#actu">Actualité</a>
+    </p>
+    <p>
+        <a class="nav-link  scroll-link" href="#contact">Contact</a>
+    </p>
+  </div>
+</nav>
+</footer>
 {% endblock %}

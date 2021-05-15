@@ -1,11 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Actualité{% endblock %}
 
 {% block body %}
 <section id="actu" class="home-container">
     <div class="card card-presentation">
-        <h1>Actualité</h1> 
+        <h2>Actualité</h2> 
         {% for actu in actualites.topic %}
         <article class="car card-actu mt-2">
         <h2>{{actu.title | raw}}</h2>
