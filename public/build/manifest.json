@@ -174,5 +174,7 @@
   "build/plugins/link/index.js": "/build/plugins/link//index.js",
   "build/plugins/save/index.js": "/build/plugins/save//index.js",
   "build/plugins/toc/index.js": "/build/plugins/toc//index.js",
-  "build/plugins/hr/index.js": "/build/plugins/hr//index.js"
+  "build/plugins/hr/index.js": "/build/plugins/hr//index.js",
+  "build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_bootstrap_dist_js_boo-22039b.js": "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_bootstrap_dist_js_boo-22039b.js",
+  "build/images/tribunal.jpg": "/build/images/tribunal.736c19ab.jpg"
 }

@@ -11,7 +11,7 @@ jQuery(document).ready(function () {
     $('#topic-list').find('.topic').each(function () {
         putDeleteButton($(this));
     })
-    jQuery('.add-another-collection-widget').on('click', (e) => {
+    jQuery('.add-another-collection-widget').on('click', (e) => { 
         var list = $($(e.target).data('list-selector'));
         var counter = list.data('widget-counter') || list.children().length;
         var newWidget = list.data('prototype');
